@@ -35,7 +35,8 @@ with the description. Do not add placeholder prefixes.
 <third-person present-tense verb> <what the change does>
 ```
 
-- Exactly one line: no body, bullet list, or trailing period.
+- Exactly one line: no body, bullet list, or trailing period, except for explicitly requested co-author trailers.
+- Do not add co-authors (including `Co-authored-by` trailers) unless the user explicitly requests them.
 - Start the description with a verb such as `Adds`, `Changes`, `Fixes`, `Removes`, `Updates`, `Refactors`, `Improves`,
   `Renames`, `Moves`, `Documents`, or `Tests`.
 - Keep it short and focused on the main change. Avoid verbose descriptions or a list of unrelated edits.
