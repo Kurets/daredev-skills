@@ -32,6 +32,7 @@ const capitalize = (value: string): string =>
 ## Props naming and destructuring
 
 - Represent mutually exclusive component modes with a named union prop such as `variant` or `size`, rather than Boolean flags that permit contradictory combinations. Keep independent Boolean behaviors as separate props.
+- Do not default behavior-selecting props such as `variant` or `mode` in feature components; follow the default-value rules in [typescript.md](typescript.md#default-values).
 - An unexported props type in the component's own file may be called `Props`.
 - Give exported props types and props types in separate files a component-specific name, such as `ExampleProps`, not `Props`.
 - Destructure props in the parameter list when it fits clearly on one line under the project's formatter.

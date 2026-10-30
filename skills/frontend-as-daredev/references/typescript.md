@@ -7,6 +7,15 @@
 - Use `null` to represent intentional absence, including an explicitly empty result such as `findValue(): string | null`.
 - Do not mechanically change every `T | undefined` return type to `T | null`: preserve existing API, library, serialization, and state contracts. Follow the meaning of the absence.
 
+## Default values
+
+- Do not give a parameter, option, or prop a default value when it selects behavior, such as a mode, flag, strategy, limit, or timeout, or anything that changes branching, validation, or persistence. Make it required so each caller chooses the branch explicitly.
+- Defaults are acceptable for incidental values whose value cannot change behavior, such as optional metadata. When such a value can be absent, prefer an optional value over an invented placeholder, e.g. `displayName?: string` rather than defaulting it to `'Guest'`.
+- Do not add a default to a new parameter merely to avoid updating existing call sites; update the callers.
+- Shared design-system components may keep a conventional default, such as a `Button` defaulting to its primary variant.
+- Keep defaults required by a framework, library, or public API compatibility, and point out the conflict rather than removing them silently.
+- Apply this to code being written or changed. Do not remove existing defaults from unrelated code.
+
 ## Boolean naming
 
 - Name Boolean values, including props, and Boolean-returning functions as readable predicates, using `is`, `has`, `can`, or `should` where natural.

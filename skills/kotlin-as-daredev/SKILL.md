@@ -53,6 +53,14 @@ Apply these preferences when writing or changing Kotlin code. They are personal 
 - Prefer separate statements when the side effect becomes substantial or obscures execution order.
 - Remember that `also` returns its receiver, not the lambda's result.
 
+### Default values
+
+- Do not give a parameter or property a default value when it selects behavior, such as a mode, flag, strategy, limit, or timeout, or anything that changes branching, validation, or persistence. Make it required so each caller chooses the branch explicitly.
+- Defaults are acceptable for incidental values whose value cannot change behavior, such as optional metadata. When such a value can be absent, prefer a nullable `null` default over an invented placeholder, e.g. `displayName: String? = null` rather than `displayName: String = "Guest"`.
+- Do not add a default to a new parameter merely to avoid updating existing call sites; update the callers.
+- Keep defaults required by a framework, serialization format, or public API compatibility, and point out the conflict rather than removing them silently. Test fixture defaults follow [references/testing.md](references/testing.md).
+- Apply this to code being written or changed. Do not remove existing defaults from unrelated code.
+
 ### Organization and visibility
 
 - Use blank lines to divide functions and classes into meaningful, cohesive groups.

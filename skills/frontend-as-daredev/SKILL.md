@@ -11,7 +11,7 @@ Apply these personal preferences without rewriting unrelated code. Preserve beha
 
 Do not read every reference upfront. Select by the work being performed, not merely by file extension or installed dependencies. Multiple references may apply; skip unrelated ones.
 
-- [references/typescript.md](references/typescript.md): when writing or reviewing frontend TypeScript/JavaScript logic, types, control flow, naming, imports, or exports. Skip for CSS-only work.
+- [references/typescript.md](references/typescript.md): when writing or reviewing frontend TypeScript/JavaScript logic, types, default values, control flow, naming, imports, or exports. Skip for CSS-only work.
 - [references/react.md](references/react.md): when writing or reviewing React components, props, hooks, rendering, memoization, or component/hook organization. Skip for styling-only changes.
 - [references/server-state.md](references/server-state.md): when writing or reviewing React API integration, server-state queries or mutations, caching, or server-state tooling choices. Do not load merely because TanStack Query is installed.
 - [references/styling.md](references/styling.md): when working on styling or class names in a repository that uses CSS Modules. Otherwise, skip it and follow the existing styling approach. Prefer CSS Modules for new projects; do not introduce them into an existing repository that does not use them.
