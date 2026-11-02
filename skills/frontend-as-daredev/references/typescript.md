@@ -16,6 +16,13 @@
 - Keep defaults required by a framework, library, or public API compatibility, and point out the conflict rather than removing them silently.
 - Apply this to code being written or changed. Do not remove existing defaults from unrelated code.
 
+## Constants and literals
+
+- Give meaningful thresholds, limits, timeouts, and repeated protocol or domain strings descriptive names instead of embedding unexplained literals in logic.
+- Include units or scale in the name when useful (e.g. `TIMEOUT_MS`, `MAX_RETRIES`).
+- Do not extract obvious literals merely to eliminate every number or short string (e.g. `0`, `1`, `''`, single-use UI copy already handled by localization).
+- Prefer existing enums, unions, or shared constants when the project already has them; do not invent a parallel constant layer.
+
 ## Boolean naming
 
 - Name Boolean values, including props, and Boolean-returning functions as readable predicates, using `is`, `has`, `can`, or `should` where natural.
