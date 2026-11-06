@@ -9,11 +9,13 @@ conventions, not universal best practices. Take what fits, adapt the rest.
 
 | Skill                                                      | What it covers                                                                             |
 |------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| [code-as-daredev](skills/code-as-daredev/SKILL.md)         | Language-agnostic defaults, naming, constants, guards, blank lines, comments, lean tests, apply/extend. |
 | [kotlin-as-daredev](skills/kotlin-as-daredev/SKILL.md)     | Kotlin style, domain modeling, error handling, testing, and project setup.                 |
 | [frontend-as-daredev](skills/frontend-as-daredev/SKILL.md) | React components and hooks, TypeScript, CSS Modules, and server state with TanStack Query. |
 | [commit-as-daredev](skills/commit-as-daredev/SKILL.md) | Concise commit messages, prefixed with a task ID only when available. |
 
-The coding skills keep specialized guidance in references that agents read only when relevant.
+`kotlin-as-daredev` and `frontend-as-daredev` build on `code-as-daredev`. The stack skills keep specialized guidance in
+references that agents read only when relevant.
 
 ## Install
 
@@ -26,6 +28,7 @@ npx skills add kurets/daredev-skills
 Or select one skill:
 
 ```bash
+npx skills add kurets/daredev-skills --skill code-as-daredev
 npx skills add kurets/daredev-skills --skill kotlin-as-daredev
 npx skills add kurets/daredev-skills --skill frontend-as-daredev
 npx skills add kurets/daredev-skills --skill commit-as-daredev
@@ -50,8 +53,9 @@ equivalent supported by your agent):
 
 ```text
 Before writing a commit message or creating a commit, load and follow commit-as-daredev.
-Before writing or changing Kotlin code, load and follow kotlin-as-daredev.
-Before writing or changing React, frontend TypeScript, or CSS code, load and follow frontend-as-daredev.
+Before writing or changing code in any language, load and follow code-as-daredev.
+Before writing or changing Kotlin code, load and follow kotlin-as-daredev (after code-as-daredev).
+Before writing or changing React, frontend TypeScript, or CSS code, load and follow frontend-as-daredev (after code-as-daredev).
 If a skill is unavailable, say so rather than assuming its rules.
 ```
 

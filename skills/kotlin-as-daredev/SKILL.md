@@ -5,7 +5,9 @@ description: "Write, refactor, or review Kotlin code using Daredev's personal co
 
 # Kotlin as Daredev
 
-Apply these preferences when writing or changing Kotlin code. They are personal conventions, not a mandate to rewrite unrelated code. Preserve behavior and follow explicit user instructions; check the surrounding code and build constraints before applying a rule. If a preference conflicts with a required API, language restriction, or project convention, point out the conflict rather than silently breaking the code.
+Apply these preferences when writing or changing Kotlin code. First load and follow `code-as-daredev` for language-agnostic defaults, Boolean naming, constants, control-flow guards, blank-line grouping, comments, lean tests, and how to apply or extend conventions. This skill adds Kotlin-specific rules on top.
+
+They are personal conventions, not a mandate to rewrite unrelated code. Preserve behavior and follow explicit user instructions; check the surrounding code and build constraints before applying a rule. If a preference conflicts with a required API, language restriction, or project convention, point out the conflict rather than silently breaking the code.
 
 ## Load specialized references only when needed
 
@@ -29,8 +31,7 @@ Apply these preferences when writing or changing Kotlin code. They are personal 
 - Treat parameter names as a continuation of the function name. When they express the remaining meaning clearly, avoid repeating that meaning in the function name.
 - Prefer `findBy(playerId: PlayerId)` over `findByPlayerId(playerId: PlayerId)`, and `createFrom(something: Something)` over `createFromSomething(something: Something)`. This preference applies broadly, not only to lookups.
 - Keep a more explicit name when needed for clarity or required by a framework or API.
-- Name Boolean properties and functions as clear predicates, using prefixes such as `is`, `has`, `can`, or `should` where natural.
-- Prefer names that make conditions readable, such as `if (game.isFinished)` or `if (player.canAttack(target))`, rather than ambiguous names like `status` or `attackCheck`.
+- Boolean naming follows `code-as-daredev`.
 - Use named arguments when a positional argument would obscure its meaning, especially Boolean flags, numeric literals, and adjacent parameters of the same type.
 - Do not require named arguments when the meaning is already obvious.
 
@@ -41,10 +42,9 @@ Apply these preferences when writing or changing Kotlin code. They are personal 
 - Prefer expression bodies (`fun ... = ...`) when a function is a single clear expression.
 - Use block bodies when local variables, branching, or multiple steps make the logic easier to follow.
 - Do not compress complex logic merely to avoid a block body.
-- Prefer guard clauses and early exits when they reduce nesting and keep the main flow clear.
+- Guard clauses, early exits, and not replacing errors with silent returns follow `code-as-daredev`.
 - Use `?: return` when absence is an expected outcome.
 - Use `?: throw ...` when absence is an error, following the project's error-handling conventions.
-- Do not replace an error with a silent return merely to simplify the code.
 - Prefer collection operations that directly express the question being asked: `any` for existence, `none` for absence, and `all` for every element matching.
 - Avoid filtering or counting merely to check whether a match exists, e.g. prefer `cards.any { it.name == SHELL }` over `cards.filter { it.name == SHELL }.isNotEmpty()`.
 - Use implicit `it` for short, obvious lambdas.
@@ -55,20 +55,12 @@ Apply these preferences when writing or changing Kotlin code. They are personal 
 
 ### Default values
 
-- Do not give a parameter or property a default value when it selects behavior, such as a mode, flag, strategy, limit, or timeout, or anything that changes branching, validation, or persistence. Make it required so each caller chooses the branch explicitly.
-- Defaults are acceptable for incidental values whose value cannot change behavior, such as optional metadata. When such a value can be absent, prefer a nullable `null` default over an invented placeholder, e.g. `displayName: String? = null` rather than `displayName: String = "Guest"`.
-- Do not add a default to a new parameter merely to avoid updating existing call sites; update the callers.
-- Keep defaults required by a framework, serialization format, or public API compatibility, and point out the conflict rather than removing them silently. Test fixture defaults follow [references/testing.md](references/testing.md).
-- Apply this to code being written or changed. Do not remove existing defaults from unrelated code.
+- Follow `code-as-daredev` for default-value rules. Test fixture defaults follow [references/testing.md](references/testing.md).
 
 ### Organization and visibility
 
-- Use blank lines to divide functions and classes into meaningful, cohesive groups.
-- Keep variables, assignments, and calls together when they contribute to the same immediate purpose, even when they are different statement types.
-- Insert a blank line when the purpose or step changes, such as moving from preparing inputs to processing them or constructing the result.
+- Blank-line grouping follows `code-as-daredev`.
 - Within classes, keep related declarations together and separate groups with different responsibilities.
-- Keep a loop or conditional with its directly related setup when they form one logical step. Do not automatically surround every control-flow statement with blank lines.
-- Avoid both unbroken walls of statements and a blank line after every statement. Group by meaning, not a fixed number of lines.
 - Keep small, closely related declarations together in a descriptively named file when that improves navigation. Do not require one file per class.
 - Split declarations when they become large or represent independent concerns.
 - When a private helper primarily operates on one object, prefer an extension receiver over passing that object as an ordinary parameter. Keep other inputs as parameters.
@@ -82,8 +74,7 @@ Apply these preferences when writing or changing Kotlin code. They are personal 
 
 ### Constants
 
-- Give meaningful business thresholds, weights, and limits descriptive names rather than embedding unexplained literals in logic.
-- Include units or scale where needed, such as `TIMEOUT_MS` or `MISTAKE_PERCENTAGE`. Do not extract obvious literals merely to eliminate every number.
+- Naming, units, and not extracting obvious literals follow `code-as-daredev`.
 - If constants are used outside this file and belong to a class, put them in that class's `companion object`.
 - If all constants are file-private and no companion object is needed for another reason, declare them as `private` top-level constants near the top of the file (after imports). Do not create a companion object only to hold private constants.
 - If the class has a companion object for publicly used, class-related constants, keep its private constants there too rather than splitting the constants between the companion and the file top level.
@@ -91,9 +82,9 @@ Apply these preferences when writing or changing Kotlin code. They are personal 
 
 ## Applying and extending these conventions
 
+Follow `code-as-daredev` for applying and extending conventions. In addition:
+
 1. Inspect existing imports, usages, class state, module boundaries, and constant consumers before editing.
-2. Prefer the smallest change that follows the applicable rules; avoid unrelated formatting churn.
-3. Run relevant formatting, compilation, and tests if available. If they cannot run, say so.
-4. When resuming convention discovery, inspect actual repository code; propose one distinctive convention at a time with evidence and draft wording; on approval, update both the repository and installed skill, then immediately propose the next candidate unless asked to stop. Put new rules in a conditional reference where appropriate.
-5. Do not automatically reintroduce rejected proposals: verifying both positive and absent side effects in tests; preferring copy-based state transformations; returning empty collections rather than null; exhaustive `when` without `else`; structured logging as a general preference; or separate classes for independently selectable rules or strategies.
-6. When the user adds or corrects a convention, update this skill's rules and examples without inventing additional preferences.
+2. When resuming convention discovery, put new Kotlin-specific rules in a conditional reference where appropriate.
+3. Do not automatically reintroduce rejected proposals: verifying both positive and absent side effects in tests; preferring copy-based state transformations; returning empty collections rather than null; exhaustive `when` without `else`; structured logging as a general preference; or separate classes for independently selectable rules or strategies.
+4. When the user adds or corrects a Kotlin-specific convention, update this skill's rules and examples without inventing additional preferences.

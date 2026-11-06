@@ -1,5 +1,7 @@
 # TypeScript and module conventions
 
+Language-agnostic defaults, Boolean naming, constants, and control-flow guards live in `code-as-daredev`. This file keeps TypeScript-specific rules.
+
 ## Types and absence
 
 - Prefer `type` over `interface`. Keep an interface when declaration merging or another required contract depends on it.
@@ -9,28 +11,21 @@
 
 ## Default values
 
-- Do not give a parameter, option, or prop a default value when it selects behavior, such as a mode, flag, strategy, limit, or timeout, or anything that changes branching, validation, or persistence. Make it required so each caller chooses the branch explicitly.
-- Defaults are acceptable for incidental values whose value cannot change behavior, such as optional metadata. When such a value can be absent, prefer an optional value over an invented placeholder, e.g. `displayName?: string` rather than defaulting it to `'Guest'`.
-- Do not add a default to a new parameter merely to avoid updating existing call sites; update the callers.
+- Follow `code-as-daredev` for default-value rules.
 - Shared design-system components may keep a conventional default, such as a `Button` defaulting to its primary variant.
-- Keep defaults required by a framework, library, or public API compatibility, and point out the conflict rather than removing them silently.
-- Apply this to code being written or changed. Do not remove existing defaults from unrelated code.
 
 ## Constants and literals
 
-- Give meaningful thresholds, limits, timeouts, and repeated protocol or domain strings descriptive names instead of embedding unexplained literals in logic.
-- Include units or scale in the name when useful (e.g. `TIMEOUT_MS`, `MAX_RETRIES`).
-- Do not extract obvious literals merely to eliminate every number or short string (e.g. `0`, `1`, `''`, single-use UI copy already handled by localization).
-- Prefer existing enums, unions, or shared constants when the project already has them; do not invent a parallel constant layer.
+- Naming, units, obvious literals, and reusing existing enums/unions/shared constants follow `code-as-daredev`.
+- Do not extract single-use UI copy already handled by localization merely to create a constant.
 
 ## Boolean naming
 
-- Name Boolean values, including props, and Boolean-returning functions as readable predicates, using `is`, `has`, `can`, or `should` where natural.
-- Prefer names that make conditions understandable without inspecting the implementation. Do not force an unnatural prefix or rename a required external API.
+- Follow `code-as-daredev`. Applies to props and Boolean-returning functions as well.
 
 ## Control flow
 
-- Avoid `else`; prefer guard clauses and early returns to reduce nesting. Preserve execution order, side effects, and error behavior.
+- Guard clauses, early returns, and not replacing errors with silent returns follow `code-as-daredev`. Prefer that shape over `else` when it keeps the happy path clear.
 - Keep ternaries short and simple. Do not nest ternaries; avoid multiline branches that obscure the flow. Use a helper with early returns, an intermediate value, or extracted components instead.
 - Do not call a `const` helper before its initialization. A helper declared later at module scope is safe when it is only called after module initialization, such as during rendering.
 

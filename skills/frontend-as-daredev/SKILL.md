@@ -5,7 +5,9 @@ description: "Write, refactor, or review frontend code using Daredev's personal 
 
 # Frontend as Daredev
 
-Apply these personal preferences without rewriting unrelated code. Preserve behavior, follow explicit user instructions, and inspect project constraints. Point out conflicts with required APIs or tooling rather than breaking them. Older code is not more authoritative than these preferences.
+Apply these personal preferences without rewriting unrelated code. First load and follow `code-as-daredev` for language-agnostic defaults, Boolean naming, constants, control-flow guards, blank-line grouping, comments, lean tests, and how to apply or extend conventions. This skill adds frontend-specific rules on top.
+
+Preserve behavior, follow explicit user instructions, and inspect project constraints. Point out conflicts with required APIs or tooling rather than breaking them. Older code is not more authoritative than these preferences.
 
 ## Load only applicable references
 
@@ -23,4 +25,4 @@ When a project has localization, use its existing translation mechanism for user
 
 ## Applying the rules
 
-Inspect relevant dependencies, configuration, and surrounding code. Make the smallest relevant change and follow the project's formatter. Run available relevant formatting, type checks, and tests; state what was not run. Do not assume a build performs type checking.
+Follow `code-as-daredev` for applying conventions. In addition: inspect relevant dependencies, configuration, and surrounding code. Do not assume a build performs type checking.

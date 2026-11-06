@@ -2,6 +2,8 @@
 
 Read this reference when creating, changing, or reviewing Kotlin tests that use testing or mocking tools already available in the project. Do not use it to select, add, or replace test or mocking frameworks.
 
+Lean, behaviour-focused testing (public API only, no infrastructure over-testing, meaningful edges) follows `code-as-daredev`. This file keeps Kotlin tooling preferences.
+
 ## Kotest
 
 - When Kotest is available, prefer `ShouldSpec`, using `context` to group related scenarios and `should` to describe expected behavior.
