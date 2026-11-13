@@ -16,9 +16,14 @@ conventions; it does not itself authorize creating a commit or pushing it.
     - `QWE-1234-fix-auth` gives `[QWE-1234]`.
     - `feature/QWE-1234-fix-auth` gives `[QWE-1234]`.
     - `main` or `refactor-cleanup` has no task ID; omit the prefix.
-3. Inspect `git diff --staged`. If nothing is staged, inspect `git diff`; inspect relevant untracked files if they are
-   part of the requested change. Do not describe unseen changes.
-4. Identify the main purpose of the change.
+3. Decide how to learn what is being committed:
+    - Prefer conversation context when this session clearly produced the changes to commit (same edits, same
+      purpose) and nothing suggests other staged or unstaged work is included.
+    - Otherwise inspect `git diff --staged`. If nothing is staged, inspect `git diff`; inspect relevant untracked
+      files if they are part of the requested change.
+    - When context and git disagree, or staging looks broader or narrower than the chat described, trust git and
+      describe only what that inspection shows.
+4. Identify the main purpose of the change. Do not describe unseen changes.
 
 ## Task prefix
 
