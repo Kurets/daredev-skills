@@ -13,6 +13,7 @@ conventions, not universal best practices. Take what fits, adapt the rest.
 | [kotlin-as-daredev](skills/kotlin-as-daredev/SKILL.md)     | Kotlin style, domain modeling, error handling, testing, and project setup.                 |
 | [frontend-as-daredev](skills/frontend-as-daredev/SKILL.md) | React components and hooks, TypeScript, CSS Modules, and server state with TanStack Query. |
 | [commit-as-daredev](skills/commit-as-daredev/SKILL.md) | Concise commit messages, prefixed with a task ID only when available. |
+| [adr-as-daredev](skills/adr-as-daredev/SKILL.md) | Decide when a scoped goal or spec warrants an architecture decision record or an update to existing docs. |
 
 `kotlin-as-daredev` and `frontend-as-daredev` build on `code-as-daredev`. The stack skills keep specialized guidance in
 references that agents read only when relevant.
@@ -32,6 +33,7 @@ npx skills add kurets/daredev-skills --skill code-as-daredev
 npx skills add kurets/daredev-skills --skill kotlin-as-daredev
 npx skills add kurets/daredev-skills --skill frontend-as-daredev
 npx skills add kurets/daredev-skills --skill commit-as-daredev
+npx skills add kurets/daredev-skills --skill adr-as-daredev
 ```
 
 Installation is project-local by default. Add `-g` to make a skill available across projects, or `-a claude-code` /
@@ -47,6 +49,10 @@ npx skills add kurets/daredev-skills --list
 
 Ask your agent to use the installed skill when writing, refactoring, or reviewing the relevant code, or when preparing a commit message. Automatic discovery
 depends on the agent; installation alone does not guarantee it will apply a skill on every task.
+
+Run `adr-as-daredev` only by explicit request, for example: “Check `goals/search-routing/` for decisions worth
+recording in an ADR.” In Pi, you can also use `/skill:adr-as-daredev goals/search-routing/`. The review is read-only
+unless you ask it to draft or update a file.
 
 For consistent use, add a short instruction to your project's agent instructions (`AGENTS.md`, `CLAUDE.md`, or the
 equivalent supported by your agent):
